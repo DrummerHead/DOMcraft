@@ -7,6 +7,7 @@ var wW = $(window).width(),
     size = 7, //according to taste
     cellsNum = size*size,
     cells,
+    uM = 0, //margin-top in case portrait
     li = '<li></li>',
     appendHtml = '';
 
@@ -19,11 +20,12 @@ if (wW > wH) {
   d = wH;
 } else {
   d = wW;
+  uM = (wH - wW)/2;
 }
 
-celld = Math.floor(d/size);
+//celld = Math.floor(d/size);
+celld = d/size;
 console.log('celld = '+celld);
-
 
 
 // appends cells according to size variable
@@ -37,5 +39,8 @@ $('#w').append(appendHtml )
 
 console.log('d = '+d);
 
+
+//sets the size of the container and cells
+
 $('li').css({width:celld,height:celld});
-$('#w').css({width:d});
+$('#w').css({width:d+1,marginTop:uM}); //+1 to avoid float falling
