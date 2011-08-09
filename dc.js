@@ -1,5 +1,4 @@
 // initial variables
-
 var wW = $(window).width(),
     wH = $(window).height(),
     d,
@@ -9,38 +8,43 @@ var wW = $(window).width(),
     cells,
     uM = 0, //margin-top in case portrait
     li = '<li></li>',
-    appendHtml = '';
+    appendHtml = '',
+    rT; //rT is resize timeout
 
 
-// sets a the number to which all sizes are calculated according to landscape vs portrait length; using this, sets size for cells
+// function to set a the number to which all sizes are calculated according to landscape vs portrait length; using this, sets size for cells
 
-console.log('wW = '+wW+', wH = '+wH)
+// console.log('wW = '+wW+', wH = '+wH)
 
-if (wW > wH) {
-  d = wH;
-} else {
-  d = wW;
-  uM = (wH - wW)/2;
+function sizeCells() {
+  wW = $(window).width();
+  wH = $(window).height();
+  if (wW > wH) {
+    d = wH;
+    uM = 0;
+  } else {
+    d = wW;
+    uM = (wH - wW)/2;
+  }
+  celld = d/size;
+  //sets the size of the container and cells
+  $('li').css({width:celld,height:celld});
+  $('#w').css({width:d+1,marginTop:uM}); //+1 to avoid float falling
 }
 
-//celld = Math.floor(d/size);
-celld = d/size;
-console.log('celld = '+celld);
-
-
-// appends cells according to size variable
+// appends cells according to size variable and does first draw
 
 for (var i = 0; i < cellsNum; i++) {
   appendHtml += li;
 }
-console.log('appendHtml = '+appendHtml )
+$('#w').append(appendHtml)
+sizeCells()
 
-$('#w').append(appendHtml )
+// cell redrawing/resizing on windows resize
 
-console.log('d = '+d);
-
-
-//sets the size of the container and cells
-
-$('li').css({width:celld,height:celld});
-$('#w').css({width:d+1,marginTop:uM}); //+1 to avoid float falling
+$(window).resize(function(){
+  clearTimeout(rT);
+  rT = setTimeout(function(){
+    sizeCells()
+  }, 100)
+});
