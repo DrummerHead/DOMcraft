@@ -4,12 +4,17 @@ html {
   margin: 0;
   overflow: hidden;
 }
+body {
+  background-color: lightBlue;
+}
 #w {
   list-style: none;
   padding: 0;
   margin: 0;
   width: 350px;
   margin: 0 auto;
+  background-color: yellow;
+  overflow: hidden;
 }
 #w li {
   display: block;

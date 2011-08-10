@@ -3,7 +3,7 @@ var wW = $(window).width(),
     wH = $(window).height(),
     d,
     celld,
-    size = 7, //according to taste
+    size = 8, //according to taste
     cellsNum = size*size,
     cells,
     uM = 0, //margin-top in case portrait
@@ -29,7 +29,7 @@ function sizeCells() {
   celld = d/size;
   //sets the size of the container and cells
   $('li').css({width:celld,height:celld});
-  $('#w').css({width:d+1,marginTop:uM}); //+1 to avoid float falling
+  $('#w').css({width:d,marginTop:uM}); //+1 to avoid float falling - +1 was removed, only necessary for odd size
 }
 
 // appends cells according to size variable and does first draw
