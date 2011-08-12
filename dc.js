@@ -10,7 +10,9 @@ var wW,
     li = '',
     appendHtml = '',
     rT, //rT is resize timeout
-    firstPos;
+    fPos, //first Pos
+    cPos, //current Pos
+    nPos; //new Pos
 
 // function to set a the number to which all sizes are calculated according to landscape vs portrait length; using this, sets size for cells
 function sizeCells() {
@@ -46,6 +48,37 @@ $(window).resize(function(){
 
 // Drawing of the character
 // firstPos = (cellsNum/2)+((size/2)+1);
-firstPos = ((Math.round(size/2))*size)-(Math.floor(size/2))
-$('.c'+firstPos).attr('id','p');
+fPos = ((Math.round(size/2))*size)-(Math.floor(size/2))
+$('.c'+fPos).attr('id','p');
+cPos = fPos
 
+// moving the character
+
+function move(k) {
+  if (k.keyCode == 40) {
+    console.log('down');
+    $('.c'+cPos).removeAttr('id');
+    cPos = cPos + size;
+    $('.c'+cPos).attr('id', 'p');
+
+  } else if (k.keyCode == 38) {
+    console.log('up');
+    $('.c'+cPos).removeAttr('id');
+    cPos = cPos - size;
+    $('.c'+cPos).attr('id', 'p');
+
+  } else if (k.keyCode == 39) {
+    console.log('right');
+    $('.c'+cPos).removeAttr('id');
+    cPos++;
+    $('.c'+cPos).attr('id', 'p');
+
+  } else if (k.keyCode == 37) {
+    console.log('left');
+    $('.c'+cPos).removeAttr('id');
+    cPos--;
+    $('.c'+cPos).attr('id', 'p');
+  }
+}
+
+$(document).keydown(function(k){move(k)});
