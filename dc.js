@@ -3,7 +3,7 @@ var wW,
     wH,
     d,
     celld,
-    size = 8, //according to taste
+    size = 31, //according to taste
     cellsNum = size*size,
     cells,
     uM = 0, //margin-top in case portrait
@@ -57,24 +57,36 @@ function move(k) {
   $('.c'+cPos).removeAttr('id');
 
   switch (k.keyCode) {
-    case  40:
+    case 40:
+    case 74:
       //console.log('down');
-      cPos = cPos + size;
+      if (cPos<(cellsNum+1-size)) {
+        cPos = cPos + size;
+      }
       break;
 
     case 38:
+    case 75:
       //console.log('up');
-      cPos = cPos - size;
+      if (cPos>size) {
+        cPos = cPos - size;
+      }
       break;
 
     case 39:
+    case 76:
       //console.log('right');
-      cPos++;
+      if (cPos % size != 0) {
+        cPos++;
+      }
       break;
 
     case 37:
+    case 72:
       //console.log('left');
-      cPos--;
+      if (cPos % size != 1) {
+        cPos--;
+      }
       break;
   }
   $('.c'+cPos).attr('id', 'p');
