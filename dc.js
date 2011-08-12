@@ -55,30 +55,26 @@ cPos = fPos
 // moving the character
 
 function move(k) {
+  $('.c'+cPos).removeAttr('id');
+
   if (k.keyCode == 40) {
-    console.log('down');
-    $('.c'+cPos).removeAttr('id');
+    //console.log('down');
     cPos = cPos + size;
-    $('.c'+cPos).attr('id', 'p');
 
   } else if (k.keyCode == 38) {
-    console.log('up');
-    $('.c'+cPos).removeAttr('id');
+    //console.log('up');
     cPos = cPos - size;
-    $('.c'+cPos).attr('id', 'p');
 
   } else if (k.keyCode == 39) {
-    console.log('right');
-    $('.c'+cPos).removeAttr('id');
+    //console.log('right');
     cPos++;
-    $('.c'+cPos).attr('id', 'p');
 
   } else if (k.keyCode == 37) {
-    console.log('left');
-    $('.c'+cPos).removeAttr('id');
+    //console.log('left');
     cPos--;
-    $('.c'+cPos).attr('id', 'p');
+
   }
+  $('.c'+cPos).attr('id', 'p');
 }
 
 $(document).keydown(function(k){move(k)});
