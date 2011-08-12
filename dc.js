@@ -53,26 +53,29 @@ $('.c'+fPos).attr('id','p');
 cPos = fPos
 
 // moving the character
-
 function move(k) {
   $('.c'+cPos).removeAttr('id');
 
-  if (k.keyCode == 40) {
-    //console.log('down');
-    cPos = cPos + size;
+  switch (k.keyCode) {
+    case  40:
+      //console.log('down');
+      cPos = cPos + size;
+      break;
 
-  } else if (k.keyCode == 38) {
-    //console.log('up');
-    cPos = cPos - size;
+    case 38:
+      //console.log('up');
+      cPos = cPos - size;
+      break;
 
-  } else if (k.keyCode == 39) {
-    //console.log('right');
-    cPos++;
+    case 39:
+      //console.log('right');
+      cPos++;
+      break;
 
-  } else if (k.keyCode == 37) {
-    //console.log('left');
-    cPos--;
-
+    case 37:
+      //console.log('left');
+      cPos--;
+      break;
   }
   $('.c'+cPos).attr('id', 'p');
 }
