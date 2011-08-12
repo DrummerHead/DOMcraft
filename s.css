@@ -35,3 +35,22 @@ li:nth-child(3n-2) {
 #p {
   background-color: orange;
 }
+.u,
+.r,
+.d,
+.l {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+.u {
+  background-image: url(u.gif);
+}
+.r {
+  background-image: url(r.gif);
+}
+.d {
+  background-image: url(d.gif);
+}
+.l {
+  background-image: url(l.gif);
+}

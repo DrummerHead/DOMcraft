@@ -3,7 +3,7 @@ var wW,
     wH,
     d,
     celld,
-    size = 31, //according to taste
+    size = 8, //according to taste
     cellsNum = size*size,
     cells,
     uM = 0, //margin-top in case portrait
@@ -54,7 +54,7 @@ cPos = fPos
 
 // moving the character
 function move(k) {
-  $('.c'+cPos).removeAttr('id');
+  $('.c'+cPos).removeAttr('id').attr('class','c'+cPos);
 
   switch (k.keyCode) {
     case 40:
@@ -62,6 +62,7 @@ function move(k) {
       //console.log('down');
       if (cPos<(cellsNum+1-size)) {
         cPos = cPos + size;
+        $('.c'+cPos).addClass('d');
       }
       break;
 
@@ -70,6 +71,7 @@ function move(k) {
       //console.log('up');
       if (cPos>size) {
         cPos = cPos - size;
+        $('.c'+cPos).addClass('u');
       }
       break;
 
@@ -78,6 +80,7 @@ function move(k) {
       //console.log('right');
       if (cPos % size != 0) {
         cPos++;
+        $('.c'+cPos).addClass('r');
       }
       break;
 
@@ -86,6 +89,7 @@ function move(k) {
       //console.log('left');
       if (cPos % size != 1) {
         cPos--;
+        $('.c'+cPos).addClass('l');
       }
       break;
   }
