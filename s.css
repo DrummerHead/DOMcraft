@@ -11,46 +11,31 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-  width: 350px;
   margin: 0 auto;
-  background-color: yellow;
   overflow: hidden;
 }
 li {
-  display: block;
-  width: 50px;
-  height: 50px;
   float: left;
- /* outline: 1px solid grey;*/
-}
-li:nth-child(3n) {
-  background-color: red;
-}
-li:nth-child(3n-1) {
-  background-color: blue;
-}
-li:nth-child(3n-2) {
-  background-color: green;
-}
-#p {
-  background-color: orange;
-}
-.u,
-.r,
-.d,
-.l {
+  background-image: url(t.png);
+  background-color: #575757;
+  background-size: 300%;
   background-position: 50% 50%;
+}
+.u, .r, .d, .l {
+  background-image: url(m.gif);
   background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 200%;
 }
 .u {
-  background-image: url(u.gif);
+  background-position: 0 0;
 }
 .r {
-  background-image: url(r.gif);
+  background-position: 100% 0;
 }
 .d {
-  background-image: url(d.gif);
+  background-position: 100% 100%;
 }
 .l {
-  background-image: url(l.gif);
+  background-position: 0 100%;
 }

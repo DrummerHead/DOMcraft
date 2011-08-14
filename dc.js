@@ -10,7 +10,6 @@ var wW,
     li = '',
     appendHtml = '',
     rT, //rT is resize timeout
-    fPos, //first Pos
     cPos, //current Pos
     nPos; //new Pos
 
@@ -32,8 +31,8 @@ function sizeCells() {
 }
 
 // appends cells according to size variable and does first draw
-for (var i = 0; i < cellsNum; i++) {
-  appendHtml += "<li class='c"+(i+1)+"'></li>";
+for (var i = 1; i <= cellsNum; i++) {
+  appendHtml += "<li class='c"+i+"'></li>";
 }
 $('#w').append(appendHtml)
 sizeCells()
@@ -46,54 +45,75 @@ $(window).resize(function(){
   }, 100)
 });
 
-// Drawing of the character
-// firstPos = (cellsNum/2)+((size/2)+1);
-fPos = ((Math.round(size/2))*size)-(Math.floor(size/2))
-$('.c'+fPos).attr('id','p');
-cPos = fPos
+// First drawing of the character in the middle
+cPos = ((Math.round(size/2))*size)-(Math.floor(size/2))
+$('.c'+cPos).addClass('d');
 
-// moving the character
-function move(k) {
-  $('.c'+cPos).removeAttr('id').attr('class','c'+cPos);
+// generic movement function
+function move(e) {
+  switch (e) {
+    case 'd':
+      if (cPos<(cellsNum+1-size)) {
+        $('.c'+cPos).attr('class','c'+cPos);
+        cPos = cPos + size;
+      }
+      $('.c'+cPos).attr('class','c'+cPos+' d');
+      break;
+
+    case 'u':
+      if (cPos>size) {
+        $('.c'+cPos).attr('class','c'+cPos);
+        cPos = cPos - size;
+      }
+      $('.c'+cPos).attr('class','c'+cPos+' u');
+      break;
+      
+    case 'r':
+      if (cPos % size != 0) {
+        $('.c'+cPos).attr('class','c'+cPos);
+        cPos++;
+      }
+      $('.c'+cPos).attr('class','c'+cPos+' r');
+      break;
+
+    case 'l':
+      if (cPos % size != 1) {
+        $('.c'+cPos).attr('class','c'+cPos);
+        cPos--;
+      }
+      $('.c'+cPos).attr('class','c'+cPos+' l');
+      break;
+  }
+}
+
+// keyboard triggering
+function moveKey(k) {
 
   switch (k.keyCode) {
     case 40:
     case 74:
       //console.log('down');
-      if (cPos<(cellsNum+1-size)) {
-        cPos = cPos + size;
-        $('.c'+cPos).addClass('d');
-      }
+      move('d');
       break;
 
     case 38:
     case 75:
       //console.log('up');
-      if (cPos>size) {
-        cPos = cPos - size;
-        $('.c'+cPos).addClass('u');
-      }
+      move('u');
       break;
 
     case 39:
     case 76:
       //console.log('right');
-      if (cPos % size != 0) {
-        cPos++;
-        $('.c'+cPos).addClass('r');
-      }
+      move('r');
       break;
 
     case 37:
     case 72:
       //console.log('left');
-      if (cPos % size != 1) {
-        cPos--;
-        $('.c'+cPos).addClass('l');
-      }
+      move('l');
       break;
   }
-  $('.c'+cPos).attr('id', 'p');
 }
 
-$(document).keydown(function(k){move(k)});
+$(document).keydown(function(k){moveKey(k)});
