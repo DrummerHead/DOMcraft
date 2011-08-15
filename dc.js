@@ -24,38 +24,35 @@ if (wW > wH) {
   console.log(wH);
 }
 
-// size set assuming that a 80px cell looks good, that is true for iPhone4 but not for desktop, keep analyzing
-
-if (d < 720) {
+// size set assuming that a 64px cell looks good (browsers antialias the pixels)
+if (d < 576) {
   size = 8;
   console.log(size);
 
-} else if (d < 880) {
+} else if (d < 704) {
   size = 10;
   console.log(size);
 
-} else if (d < 1040) {
+} else if (d < 832) {
   size = 12;
   console.log(size);
 
-} else if (d < 1200) {
+} else if (d < 960) {
   size = 14;
   console.log(size);
 
-} else if (d < 1360) {
+} else if (d < 1088) {
   size = 16;
   console.log(size);
 
-} else if (d < 1520) {
+} else if (d < 1216) {
   size = 18;
   console.log(size);
 
 } else {
   size = 20;
   console.log(size);
-
 }
-
 cellsNum = size*size;
 
 
