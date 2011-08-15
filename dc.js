@@ -1,17 +1,63 @@
 // initial variables
-var wW,
-    wH,
+var wW = $(window).width(),
+    wH = $(window).height(),
     d,
     celld,
-    size = 8, //according to taste
-    cellsNum = size*size,
+    size, //according to taste
+    cellsNum,
     cells,
-    uM = 0, //margin-top in case portrait
-    li = '',
+    uM, //margin-top in case portrait
+    li,
     appendHtml = '',
     rT, //rT is resize timeout
     cPos, //current Pos
     nPos; //new Pos
+
+
+
+// initial setting of cell count according to inital reading of size
+if (wW > wH) {
+  d = wH;
+  console.log(wH);
+} else {
+  d = wW;
+  console.log(wH);
+}
+
+// size set assuming that a 80px cell looks good, that is true for iPhone4 but not for desktop, keep analyzing
+
+if (d < 720) {
+  size = 8;
+  console.log(size);
+
+} else if (d < 880) {
+  size = 10;
+  console.log(size);
+
+} else if (d < 1040) {
+  size = 12;
+  console.log(size);
+
+} else if (d < 1200) {
+  size = 14;
+  console.log(size);
+
+} else if (d < 1360) {
+  size = 16;
+  console.log(size);
+
+} else if (d < 1520) {
+  size = 18;
+  console.log(size);
+
+} else {
+  size = 20;
+  console.log(size);
+
+}
+
+cellsNum = size*size;
+
 
 // function to set a the number to which all sizes are calculated according to landscape vs portrait length; using this, sets size for cells
 function sizeCells() {
