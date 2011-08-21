@@ -21,6 +21,9 @@ li {
   background-size: 300%;
   background-position: 50% 50%;
 }
+.ro { /* rock */
+  background-position: 0 0;
+}
 .u, .r, .d, .l {
   background-image: url(m.gif);
   background-repeat: no-repeat;

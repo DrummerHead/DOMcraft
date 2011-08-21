@@ -98,7 +98,10 @@ function move(e) {
     case 'd':
       if (cPos<(cellsNum+1-size)) {
         $('.c'+cPos).attr('class','c'+cPos);
-        cPos = cPos + size;
+        cNew = cPos + size;
+        if (!$('.c'+cNew).hasClass('n')) {
+          cPos = cNew;
+        } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' d');
       break;
@@ -106,7 +109,10 @@ function move(e) {
     case 'u':
       if (cPos>size) {
         $('.c'+cPos).attr('class','c'+cPos);
-        cPos = cPos - size;
+        cNew = cPos - size;
+        if (!$('.c'+cNew).hasClass('n')) {
+          cPos = cNew;
+        } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' u');
       break;
@@ -114,7 +120,10 @@ function move(e) {
     case 'r':
       if (cPos % size != 0) {
         $('.c'+cPos).attr('class','c'+cPos);
-        cPos++;
+        cNew = cPos + 1;
+        if (!$('.c'+cNew).hasClass('n')) {
+          cPos = cNew;
+        } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' r');
       break;
@@ -122,7 +131,10 @@ function move(e) {
     case 'l':
       if (cPos % size != 1) {
         $('.c'+cPos).attr('class','c'+cPos);
-        cPos--;
+        cNew = cPos - 1;
+        if (!$('.c'+cNew).hasClass('n')) {
+          cPos = cNew;
+        } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' l');
       break;
@@ -160,3 +172,7 @@ function moveKey(k) {
 }
 
 $(document).keydown(function(k){moveKey(k)});
+
+
+// trying to make non-walkable objects
+$('.c67').addClass('n ro');
