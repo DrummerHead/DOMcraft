@@ -11,7 +11,8 @@ var wW = $(window).width(),
     appendHtml = '',
     rT, //rT is resize timeout
     cPos, //current Pos
-    nPos; //new Pos
+    nPos, //new Pos
+    rand; //random number
 
 
 
@@ -75,7 +76,14 @@ function sizeCells() {
 
 // appends cells according to size variable and does first draw
 for (var i = 1; i <= cellsNum; i++) {
-  appendHtml += "<li class='c"+i+"'></li>";
+  rand = Math.random();
+  if (rand > .9) {
+    appendHtml += "<li class='c"+i+" n ir'></li>";
+  } else if (rand > .2) {
+    appendHtml += "<li class='c"+i+" n ro'></li>";
+  } else {
+    appendHtml += "<li class='c"+i+"'></li>";
+  }
 }
 $('#w').append(appendHtml)
 sizeCells()
@@ -172,7 +180,3 @@ function moveKey(k) {
 }
 
 $(document).keydown(function(k){moveKey(k)});
-
-
-// trying to make non-walkable objects
-$('.c67').addClass('n ro');

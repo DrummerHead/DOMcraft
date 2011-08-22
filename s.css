@@ -24,6 +24,9 @@ li {
 .ro { /* rock */
   background-position: 0 0;
 }
+.ir { /* iron */
+  background-position: 100% 0;
+}
 .u, .r, .d, .l {
   background-image: url(m.gif);
   background-repeat: no-repeat;
