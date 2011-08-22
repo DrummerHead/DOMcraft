@@ -10,9 +10,9 @@ body {
 #w {
   list-style: none;
   padding: 0;
-  margin: 0;
   margin: 0 auto;
   overflow: hidden;
+  background-color: #575757;
 }
 li {
   float: left;

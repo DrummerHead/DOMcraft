@@ -3,7 +3,7 @@ var wW = $(window).width(),
     wH = $(window).height(),
     d,
     celld,
-    size, //according to taste
+    size,
     cellsNum,
     cells,
     uM, //margin-top in case portrait
@@ -15,45 +15,38 @@ var wW = $(window).width(),
     rand; //random number
 
 
-
 // initial setting of cell count according to inital reading of size
 if (wW > wH) {
   d = wH;
-  console.log(wH);
+  //console.log(wH);
 } else {
   d = wW;
-  console.log(wH);
+  //console.log(wH);
 }
 
 // size set assuming that a 64px cell looks good (browsers antialias the pixels)
 if (d < 576) {
   size = 8;
-  console.log(size);
 
 } else if (d < 704) {
   size = 10;
-  console.log(size);
 
 } else if (d < 832) {
   size = 12;
-  console.log(size);
 
 } else if (d < 960) {
   size = 14;
-  console.log(size);
 
 } else if (d < 1088) {
   size = 16;
-  console.log(size);
 
 } else if (d < 1216) {
   size = 18;
-  console.log(size);
 
 } else {
   size = 20;
-  console.log(size);
 }
+//console.log(size);
 cellsNum = size*size;
 
 
@@ -68,10 +61,11 @@ function sizeCells() {
     d = wW;
     uM = (wH - wW)/2;
   }
-  celld = d/size;
-  //sets the size of the container and cells
+  celld = Math.round(d/size); // To standarize browser behaviour on subpixel cases
+  d = celld*size;
+  // applies the size of container and cells
   $('li').css({width:celld,height:celld});
-  $('#w').css({width:d+1,marginTop:uM}); //+1 to avoid float falling - +1 was removed, only necessary for odd size
+  $('#w').css({width:d,marginTop:uM});
 }
 
 // appends cells according to size variable and does first draw
