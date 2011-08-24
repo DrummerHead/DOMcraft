@@ -60,12 +60,12 @@ function sizeCells() {
   dis = Math.round(celld*.625);
   // applies the size of container and cells
   $('style').remove();
-  $('head').append('<style> li, .t0 { width: '+celld+'px; height:'+celld+'px; } #w { width:'+d+'px; margin-top:'+uM+'px; } .u .t0 { top:-'+dis+'px; } .r .t0 { left:'+dis+'px; } .d .t0 { top:'+dis+'px; } .l .t0 { left:-'+dis+'px; } </style>');
+  $('head').append('<style> li, .t { width: '+celld+'px; height:'+celld+'px; } #w { width:'+d+'px; margin-top:'+uM+'px; } .u .t { top:-'+dis+'px; } .r .t { left:'+dis+'px; } .d .t { top:'+dis+'px; } .l .t { left:-'+dis+'px; } </style>');
 
 /*
   $('head').append('<style>
 li,
-.t0 {
+.t {
   width: '+celld+'px;
   height:'+celld+'px;
 }
@@ -73,16 +73,16 @@ li,
   width:'+d+'px;
   margin-top:'+uM+'px;
 }
-.u .t0 {
+.u .t {
   top:-'+dis+'px;
 }
-.r .t0 {
+.r .t {
   left:'+dis+'px;
 }
-.d .t0 {
+.d .t {
   top:'+dis+'px;
 }
-.l .t0 {
+.l .t {
   left:-'+dis+'px;
 }
 </style>');
@@ -123,6 +123,9 @@ function move(e) {
   switch (e) {
     case 'd':
       if (cPos<(cellsNum+1-size)) {
+        if(pressed){
+          $('.u,.r,.d,.l').empty();
+        }
         $('.c'+cPos).attr('class','c'+cPos);
         cNew = cPos + size;
         if (!$('.c'+cNew).hasClass('n')) {
@@ -130,10 +133,16 @@ function move(e) {
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' d');
+      if(pressed){
+        $('.u,.r,.d,.l').append('<div class="t"></div>')
+      }
       break;
 
     case 'u':
       if (cPos>size) {
+        if(pressed){
+          $('.u,.r,.d,.l').empty();
+        }
         $('.c'+cPos).attr('class','c'+cPos);
         cNew = cPos - size;
         if (!$('.c'+cNew).hasClass('n')) {
@@ -141,10 +150,16 @@ function move(e) {
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' u');
+      if(pressed){
+        $('.u,.r,.d,.l').append('<div class="t"></div>')
+      }
       break;
       
     case 'r':
       if (cPos % size != 0) {
+        if(pressed){
+          $('.u,.r,.d,.l').empty();
+        }
         $('.c'+cPos).attr('class','c'+cPos);
         cNew = cPos + 1;
         if (!$('.c'+cNew).hasClass('n')) {
@@ -152,10 +167,16 @@ function move(e) {
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' r');
+      if(pressed){
+        $('.u,.r,.d,.l').append('<div class="t"></div>')
+      }
       break;
 
     case 'l':
       if (cPos % size != 1) {
+        if(pressed){
+          $('.u,.r,.d,.l').empty();
+        }
         $('.c'+cPos).attr('class','c'+cPos);
         cNew = cPos - 1;
         if (!$('.c'+cNew).hasClass('n')) {
@@ -163,6 +184,9 @@ function move(e) {
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' l');
+      if(pressed){
+        $('.u,.r,.d,.l').append('<div class="t"></div>')
+      }
       break;
   }
 }
@@ -171,7 +195,7 @@ function action(e) {
   switch(e) {
     case 'b': //break, on pressing key
       if(!pressed){
-        $('.u,.r,.d,.l').append('<div class="t0"></div>')
+        $('.u,.r,.d,.l').append('<div class="t"></div>')
         pressed = true;
       }
       break;
@@ -180,9 +204,7 @@ function action(e) {
       $('.u,.r,.d,.l').empty();
       pressed = false;
       break;
-    
   }
-
 }
 
 // keyboard triggering

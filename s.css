@@ -46,29 +46,34 @@ li {
 .l {
   background-position: 0 100%;
 }
-.t0 {
+.t {
   background-image: url(to.gif);
   background-size: 200%;
   position: relative;
   z-index: 777;
 }
-.u .t0 {
-  top: -40px;
+.t1 {
+  background-position: 100% 0;
+}
+.t2 {
+  background-position: 0 100%;
+}
+.t3 {
+  background-position: 100% 100%;
+}
+.u .t {
   -moz-transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-.r .t0 {
-  left: 40px;
+.r .t {
 }
-.d .t0 {
-  top: 40px;
+.d .t {
   -moz-transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-.l .t0 {
-  left: -40px;
+.l .t {
   -moz-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
