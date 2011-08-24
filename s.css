@@ -16,6 +16,7 @@ body {
 }
 li {
   float: left;
+  position: relative;
   background-image: url(t.png);
   background-color: #575757;
   background-size: 300%;
@@ -44,4 +45,31 @@ li {
 }
 .l {
   background-position: 0 100%;
+}
+.t0 {
+  background-image: url(to.gif);
+  background-size: 200%;
+  position: relative;
+  z-index: 777;
+}
+.u .t0 {
+  top: -40px;
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.r .t0 {
+  left: 40px;
+}
+.d .t0 {
+  top: 40px;
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.l .t0 {
+  left: -40px;
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }

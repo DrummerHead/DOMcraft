@@ -12,41 +12,34 @@ var wW = $(window).width(),
     rT, //rT is resize timeout
     cPos, //current Pos
     nPos, //new Pos
-    rand; //random number
+    rand, //random number
+    pressed, //is the key pressed?
+    dis; //distance of a border to the weapon
 
 
 // initial setting of cell count according to inital reading of size
 if (wW > wH) {
   d = wH;
-  //console.log(wH);
 } else {
   d = wW;
-  //console.log(wH);
 }
 
 // size set assuming that a 64px cell looks good (browsers antialias the pixels)
 if (d < 576) {
   size = 8;
-
 } else if (d < 704) {
   size = 10;
-
 } else if (d < 832) {
   size = 12;
-
 } else if (d < 960) {
   size = 14;
-
 } else if (d < 1088) {
   size = 16;
-
 } else if (d < 1216) {
   size = 18;
-
 } else {
   size = 20;
 }
-//console.log(size);
 cellsNum = size*size;
 
 
@@ -61,11 +54,42 @@ function sizeCells() {
     d = wW;
     uM = (wH - wW)/2;
   }
-  celld = Math.round(d/size); // To standarize browser behaviour on subpixel cases
+  celld = Math.floor(d/size); // To standarize browser behaviour on subpixel cases
   d = celld*size;
+  //calculating the distance of weapon container to the character for correct correlation
+  dis = Math.round(celld*.625);
   // applies the size of container and cells
-  $('li').css({width:celld,height:celld});
-  $('#w').css({width:d,marginTop:uM});
+  $('style').remove();
+  $('head').append('<style> li, .t0 { width: '+celld+'px; height:'+celld+'px; } #w { width:'+d+'px; margin-top:'+uM+'px; } .u .t0 { top:-'+dis+'px; } .r .t0 { left:'+dis+'px; } .d .t0 { top:'+dis+'px; } .l .t0 { left:-'+dis+'px; } </style>');
+
+/*
+  $('head').append('<style>
+li,
+.t0 {
+  width: '+celld+'px;
+  height:'+celld+'px;
+}
+#w {
+  width:'+d+'px;
+  margin-top:'+uM+'px;
+}
+.u .t0 {
+  top:-'+dis+'px;
+}
+.r .t0 {
+  left:'+dis+'px;
+}
+.d .t0 {
+  top:'+dis+'px;
+}
+.l .t0 {
+  left:-'+dis+'px;
+}
+</style>');
+*/
+  
+  //$('li').css({width:celld,height:celld});
+  //$('#w').css({width:d,marginTop:uM});
 }
 
 // appends cells according to size variable and does first draw
@@ -143,8 +167,26 @@ function move(e) {
   }
 }
 
+function action(e) {
+  switch(e) {
+    case 'b': //break, on pressing key
+      if(!pressed){
+        $('.u,.r,.d,.l').append('<div class="t0"></div>')
+        pressed = true;
+      }
+      break;
+
+    case 'r': //release breaking key
+      $('.u,.r,.d,.l').empty();
+      pressed = false;
+      break;
+    
+  }
+
+}
+
 // keyboard triggering
-function moveKey(k) {
+function kDown(k) {
 
   switch (k.keyCode) {
     case 40:
@@ -170,7 +212,24 @@ function moveKey(k) {
       //console.log('left');
       move('l');
       break;
+
+    case 32:
+      action('b');
+      break;
+  }
+}
+function kUp(k) {
+
+  switch (k.keyCode) {
+    case 32:
+      action('r');
+      break;
   }
 }
 
-$(document).keydown(function(k){moveKey(k)});
+$(document).keydown(function(k){kDown(k)}).keyup(function(k){kUp(k)});
+
+// giving onclick to iron for testing
+$('.ir').click(function(){
+  $(this).removeClass('ir n');
+})
