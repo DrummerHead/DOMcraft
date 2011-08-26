@@ -5,7 +5,7 @@ html {
   overflow: hidden;
 }
 body {
-  background-color: lightBlue;
+  background-color: #252525;
 }
 #w {
   list-style: none;
@@ -29,22 +29,27 @@ li {
   background-position: 100% 0;
 }
 .u, .r, .d, .l {
-  background-image: url(m.gif);
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  background-size: 200%;
+  background-image: url(m.gif), url(t.png);
+  background-size: 100%, 300%;
+  background-position: 50% 50%, 50% 50%;
+  z-index: 700;
 }
 .u {
-  background-position: 0 0;
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 .r {
-  background-position: 100% 0;
 }
 .d {
-  background-position: 100% 100%;
+  -moz-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 .l {
-  background-position: 0 100%;
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .t {
   background-image: url(to.gif);
@@ -60,21 +65,4 @@ li {
 }
 .t3 {
   background-position: 100% 100%;
-}
-.u .t {
-  -moz-transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-}
-.r .t {
-}
-.d .t {
-  -moz-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-.l .t {
-  -moz-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
 }

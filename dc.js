@@ -60,7 +60,7 @@ function sizeCells() {
   dis = Math.round(celld*.625);
   // applies the size of container and cells
   $('style').remove();
-  $('head').append('<style> li, .t { width: '+celld+'px; height:'+celld+'px; } #w { width:'+d+'px; margin-top:'+uM+'px; } .u .t { top:-'+dis+'px; } .r .t { left:'+dis+'px; } .d .t { top:'+dis+'px; } .l .t { left:-'+dis+'px; } </style>');
+  $('head').append('<style> li, .t { width: '+celld+'px; height:'+celld+'px; } #w { width:'+d+'px; margin-top:'+uM+'px; } .t { left:'+dis+'px; } </style>');
 
 /*
   $('head').append('<style>
@@ -73,23 +73,11 @@ li,
   width:'+d+'px;
   margin-top:'+uM+'px;
 }
-.u .t {
-  top:-'+dis+'px;
-}
-.r .t {
+.t {
   left:'+dis+'px;
-}
-.d .t {
-  top:'+dis+'px;
-}
-.l .t {
-  left:-'+dis+'px;
 }
 </style>');
 */
-  
-  //$('li').css({width:celld,height:celld});
-  //$('#w').css({width:d,marginTop:uM});
 }
 
 // appends cells according to size variable and does first draw
