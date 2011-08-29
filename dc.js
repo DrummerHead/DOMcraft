@@ -12,9 +12,11 @@ var wW = $(window).width(),
     rT, //rT is resize timeout
     cPos, //current Pos
     nPos, //new Pos
+    bPos, //break Pos
     rand, //random number
     pressed, //is the key pressed?
-    dis; //distance of a border to the weapon
+    dis, //distance of a border to the weapon
+    look = 'd'; //where the character is looking at
 
 
 // initial setting of cell count according to inital reading of size
@@ -115,12 +117,13 @@ function move(e) {
           $('.u,.r,.d,.l').empty();
         }
         $('.c'+cPos).attr('class','c'+cPos);
-        cNew = cPos + size;
-        if (!$('.c'+cNew).hasClass('n')) {
-          cPos = cNew;
+        nPos = cPos + size;
+        if (!$('.c'+nPos).hasClass('n')) {
+          cPos = nPos;
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' d');
+      look = 'd';
       if(pressed){
         $('.u,.r,.d,.l').append('<div class="t"></div>')
       }
@@ -132,12 +135,13 @@ function move(e) {
           $('.u,.r,.d,.l').empty();
         }
         $('.c'+cPos).attr('class','c'+cPos);
-        cNew = cPos - size;
-        if (!$('.c'+cNew).hasClass('n')) {
-          cPos = cNew;
+        nPos = cPos - size;
+        if (!$('.c'+nPos).hasClass('n')) {
+          cPos = nPos;
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' u');
+      look = 'u';
       if(pressed){
         $('.u,.r,.d,.l').append('<div class="t"></div>')
       }
@@ -149,12 +153,13 @@ function move(e) {
           $('.u,.r,.d,.l').empty();
         }
         $('.c'+cPos).attr('class','c'+cPos);
-        cNew = cPos + 1;
-        if (!$('.c'+cNew).hasClass('n')) {
-          cPos = cNew;
+        nPos = cPos + 1;
+        if (!$('.c'+nPos).hasClass('n')) {
+          cPos = nPos;
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' r');
+      look = 'r';
       if(pressed){
         $('.u,.r,.d,.l').append('<div class="t"></div>')
       }
@@ -166,12 +171,13 @@ function move(e) {
           $('.u,.r,.d,.l').empty();
         }
         $('.c'+cPos).attr('class','c'+cPos);
-        cNew = cPos - 1;
-        if (!$('.c'+cNew).hasClass('n')) {
-          cPos = cNew;
+        nPos = cPos - 1;
+        if (!$('.c'+nPos).hasClass('n')) {
+          cPos = nPos;
         } 
       }
       $('.c'+cPos).attr('class','c'+cPos+' l');
+      look = 'l';
       if(pressed){
         $('.u,.r,.d,.l').append('<div class="t"></div>')
       }
@@ -185,6 +191,40 @@ function action(e) {
       if(!pressed){
         $('.u,.r,.d,.l').append('<div class="t"></div>')
         pressed = true;
+      }
+      switch(look) {
+        case 'u':
+          console.log('u');
+          bPos = cPos - size;
+          if ($('.c'+bPos).hasClass('n')) {
+            $('.c'+nPos).hasClass('n')
+          } 
+          $('.c'+bPos).attr('class','c'+bPos);
+          break
+        case 'r':
+          console.log('r');
+          bPos = cPos + 1;
+          if ($('.c'+bPos).hasClass('n')) {
+            $('.c'+nPos).hasClass('n')
+          } 
+          $('.c'+bPos).attr('class','c'+bPos);
+          break
+        case 'd':
+          console.log('d');
+          bPos = cPos + size;
+          if ($('.c'+bPos).hasClass('n')) {
+            $('.c'+nPos).hasClass('n')
+          } 
+          $('.c'+bPos).attr('class','c'+bPos);
+          break
+        case 'l':
+          console.log('l');
+          bPos = cPos - 1;
+          if ($('.c'+bPos).hasClass('n')) {
+            $('.c'+nPos).hasClass('n')
+          } 
+          $('.c'+bPos).attr('class','c'+bPos);
+          break
       }
       break;
 
